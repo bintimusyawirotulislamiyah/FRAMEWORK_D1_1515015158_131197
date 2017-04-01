@@ -26,4 +26,28 @@ class dosen_matakuliahcontroller extends Controller
 		$dosen_matakuliah->save();
 		return"data dengan dosen_id {$dosen_matakuliah->dosen_id} telah disimpan";
 	}
+	public function edit($id)
+	{
+		$dosen_matakuliah = dosen_matakuliah::find($id);
+		return view('dosen_matakuliah.edit')->with(array('dosen_matakuliah'=>$dosen_matakuliah));
+	}
+	public function lihat($id)
+	{
+		$dosen_matakuliah = dosen_matakuliah::find($id);
+		return view('dosen_matakuliah.lihat')->with(array('dosen_matakuliah'=>$dosen_matakuliah));
+	}
+	public function update($id, Request $input)
+	{
+		$dosen_matakuliah = dosen_matakuliah::find($id);
+		$dosen_matakuliah->dosen_id = $input->dosen_id;
+		$dosen_matakuliah->matakuliah_id = $input->matakuliah_id;
+		$informasi = $dosen_matakuliah->save() ? 'Berhasil update data' : 'Gagal update data';
+		return redirect('dosen_matakuliah')->with(['informasi'=>$informasi]);
+	}
+	public function hapus($id)
+	{
+		$dosen_matakuliah = dosen_matakuliah::find($id);
+		$informasi = $dosen_matakuliah->delete() ? 'Berhasil hapus data' : 'Gagal hapus data';
+		return redirect('dosen_matakuliah')->with(['informasi'=>$informasi]);
+	}
 }

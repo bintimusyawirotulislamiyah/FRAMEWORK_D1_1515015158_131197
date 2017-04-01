@@ -86,10 +86,10 @@
       <nav class="navbar navbar-default navbar-fixed-bottom">
         <footer class="container">
           <!-- please dont delete this -->
-          created by <a href="http://twitter.com/triasbarata">
+          created by <a href="http://instagram.com/bintislamiyah">
           <span>
-            <i class="fa fa-twitter" style="color:#1da1f2"></i>
-            @triasbarata
+            <i class="fa fa-instagram" style="color:#1da1f2"></i>
+            @bintislamiyah
           </span></a>
           <!--/please dont delete this -->
         </footer>

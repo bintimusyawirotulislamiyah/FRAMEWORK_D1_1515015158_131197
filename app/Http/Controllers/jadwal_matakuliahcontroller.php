@@ -27,4 +27,29 @@ class jadwal_matakuliahcontroller extends Controller
 		$jadwal_matakuliah->save();
 		return"data dengan mahasiswa_id {$jadwal_matakuliah->mahasiswa_id} telah disimpan";
 	}
+	public function edit($id)
+	{
+		$jadwal_matakuliah = jadwal_matakuliah::find($id);
+		return view('jadwal_matakuliah.edit')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
+	}
+	public function lihat($id)
+	{
+		$jadwal_matakuliah = jadwal_matakuliah::find($id);
+		return view('jadwal_matakuliah.lihat')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
+	}
+	public function update($id, Request $input)
+	{
+		$jadwal_matakuliah = jadwal_matakuliah::find($id);
+		$jadwal_matakuliah->mahasiswa_id = $input->mahasiswa_id;
+		$jadwal_matakuliah->ruangan_id = $input->ruangan_id;
+		$jadwal_matakuliah->dosen_matakuliah_id = $input->dosen_matakuliah_id;
+		$informasi = $jadwal_matakuliah->save() ? 'Berhasil update data' : 'Gagal update data';
+		return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
+	}
+	public function hapus($id)
+	{
+		$dosen_matakuliah = dosen_matakuliah::find($id);
+		$informasi = $dosen_matakuliah->delete() ? 'Berhasil hapus data' : 'Gagal hapus data';
+		return redirect('dosen_matakuliah')->with(['informasi'=>$informasi]);
+	}
 }
