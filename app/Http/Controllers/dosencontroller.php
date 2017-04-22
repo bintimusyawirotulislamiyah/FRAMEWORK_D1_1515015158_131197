@@ -10,6 +10,8 @@ use App\Dosen;
 
 use App\Pengguna;
 
+use App\Http\Requests\DosenRequest;
+
 class dosencontroller extends Controller
 {
 	protected $informasi = 'Gagal melakukan aksi';
@@ -23,8 +25,13 @@ class dosencontroller extends Controller
 	{
 		return view('dosen.tambah');
 	}
-	public function simpan(Request $input)
+	public function simpan(DosenRequest $input)
 	{
+		$this->validate($input, [
+			'username'=>'required',
+			'password'=>'required',
+		]);
+
 		$pengguna = new pengguna($input->only('username','password'));
 		if ($pengguna->save())
 		{
@@ -49,7 +56,7 @@ class dosencontroller extends Controller
 		return view('dosen.lihat')->with(array('dosen'=>$dosen));
 	}
 
-	public function update($id, Request $input)
+	public function update($id, DosenRequest $input)
 	{
 		$dosen = dosen::find($id);
 		$pengguna = $dosen->pengguna;

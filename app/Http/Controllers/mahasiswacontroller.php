@@ -10,6 +10,8 @@ use App\Mahasiswa;
 
 use App\Pengguna;
 
+use App\Http\Requests\MahasiswaRequest;
+
 class mahasiswacontroller extends Controller
 {
 	protected $informasi = 'Gagal melakukan aksi';
@@ -24,8 +26,12 @@ class mahasiswacontroller extends Controller
 		return view('mahasiswa.tambah');
 	}
 
-	public function simpan(Request $input)
+	public function simpan(MahasiswaRequest $input)
 	{
+		$this->validate($input, [
+			'username'=>'required',
+			'password'=>'required',]);
+
 		$pengguna = new pengguna($input->only('username','password'));
 		if ($pengguna->save())
 		{
@@ -51,7 +57,7 @@ class mahasiswacontroller extends Controller
 		return view('mahasiswa.lihat')->with(array('mahasiswa'=>$mahasiswa));
 	}
 
-	public function update($id, Request $input)
+	public function update($id, MahasiswaRequest $input)
 	{
 		$mahasiswa = mahasiswa::find($id);
 		$pengguna = $mahasiswa->pengguna;
