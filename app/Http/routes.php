@@ -10,11 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout','SesiController@logout');
+Route::get('/','SesiController@index');
+Route::group(['middleware'=>'AutentifikasiUser'],function() {
 Route::get('pengguna','PenggunaController@awal');
 Route::get('pengguna/tambah','PenggunaController@tambah');
 Route::get('pengguna/{pengguna}','PenggunaController@lihat');
@@ -70,6 +70,13 @@ Route::post('jadwal_matakuliah/simpan','jadwal_matakuliahcontroller@simpan');
 Route::get('jadwal_matakuliah/edit/{jadwal_matakuliah}','jadwal_matakuliahcontroller@edit');
 Route::post('jadwal_matakuliah/edit/{jadwal_matakuliah}','jadwal_matakuliahcontroller@update');
 Route::get('jadwal_matakuliah/hapus/{jadwal_matakuliah}','jadwal_matakuliahcontroller@hapus');
+	});
+
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 Route::get('ujiHas','RelationshipRebornController@ujiHas');
 Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
@@ -113,3 +120,4 @@ Route::post('/',function (Request $request)
 {
 	echo "Hasil dari form input tadi nama : ".$request->nama;
 });
+*/

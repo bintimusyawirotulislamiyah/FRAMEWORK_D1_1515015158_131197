@@ -12,7 +12,7 @@
               <tr>
                   <th>No.</th>
                   <th>Nama Mahasiswa</th>
-                  <th>Nim Mahasiswa</th>
+                  <th>NIM Mahasiswa</th>
                   <th>Nama Matakuliah</th>
                   <th>Aksi</th>
               </tr>
